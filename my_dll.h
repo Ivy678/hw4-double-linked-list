@@ -52,7 +52,7 @@ dll_t *create_dll()
     
     myDLL->count = 0;
     myDLL->head = NULL;
-    myDLL->tail = NULL;
+    myDLL->tail= myDLL->head;
 
     return myDLL;
 }
@@ -80,15 +80,16 @@ node_t* make_node(int data){
 int dll_empty(dll_t *l)
 {
     // TODO: Implement me!!
-    if (l->count == 0 )
-    {
-        return 1;
-    }
     if (l == NULL)
     {
         return -1;
     }
-    return 0;
+    if (l->count == 0)
+    {
+        return 1;
+    }
+    else return 0;
+    
 }
 
 // push a new item to the front of the DLL ( before the first node in the list).
@@ -103,7 +104,7 @@ int dll_push_front(dll_t *l, int item)
     {
         return -1;
     }
-
+    
     node_t* newNode = make_node(item);
     if (newNode == NULL)
     {
@@ -111,8 +112,8 @@ int dll_push_front(dll_t *l, int item)
     }
     
     newNode->next = l->head;
-    l->head->previous = newNode;
     newNode->previous= NULL;
+    l->head->previous = newNode;
     l->head = newNode;
     l->count++;
 
@@ -163,6 +164,7 @@ int dll_pop_front(dll_t *t)
     t->head->next->previous = NULL;
     t->head = t->head->next;
     t->count--;
+    free(t->head);
     
     return p->data; // Note: This line is a 'filler' so the code compiles.
 }
@@ -188,6 +190,7 @@ int dll_pop_back(dll_t *t)
     t->tail = t->tail->previous;
     t->tail->next = NULL;
     t->count --;
+    free(t->tail);
 
     return p->data; // Note: This line is a 'filler' so the code compiles.
 }
@@ -220,18 +223,17 @@ int dll_insert(dll_t *l, int pos, int item)
         return 0;
     }
 
-    node_t* h = l->head;
+    node_t* h = l->head->next;
     
-    for(int i =0;i< pos;i++)
+    for(int i =0;i< pos-1 ;i++)
     {
         h = h->next;
     }
-
+    
     newNode->previous = h->previous;
     newNode->next = h;
     h->previous->next = newNode;
     h->previous= newNode;
-    l->head = newNode;
     l->count ++;
     
     return 1; // Note: This line is a 'filler' so the code compiles.
@@ -291,7 +293,8 @@ int dll_remove(dll_t *l, int pos)
         return 0;
     }
 
-    node_t* h = l->head;
+    node_t* h = l->head->next;
+
 
     if (h == NULL)
     {
@@ -306,10 +309,9 @@ int dll_remove(dll_t *l, int pos)
     node_t* temp = h;
     h->next->previous = h->previous;
     h->previous->next = h->next;
-    h->next= NULL;
-    h->previous = NULL;
+    free(h);
     l->count --;
-
+    
     return temp->data;
 
 }
