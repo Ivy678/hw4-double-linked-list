@@ -111,6 +111,116 @@ int unitTest5(int status)
     return passed;
 }
 
+// Test push front and pop front
+int unitTest6(int status)
+{
+    int passed = 0;
+    dll_t *test = create_dll();
+    dll_push_front(test, 456);
+    dll_pop_front(test);
+    if (0 == dll_size(test))
+    {
+        passed = 1;
+    }
+    else
+    {
+        passed = 0;
+    }
+    free_dll(test);
+
+    return passed;
+}
+
+// Test insert before the first node.
+int unitTest7(int status)
+{
+    int passed = 0;
+    dll_t *test = create_dll();
+    dll_push_front(test, 456);
+    dll_push_front(test, 487);
+    dll_insert(test,0,45);
+    if (45 == dll_pop_front(test))
+    {
+        passed = 1;
+    }
+    else
+    {
+        passed = 0;
+    }
+    free_dll(test);
+
+    return passed;
+}
+
+
+//Test insert at the tail.
+int unitTest8(int status)
+{
+    int passed = 0;
+    dll_t *test = create_dll();
+    dll_push_front(test, 456);
+    dll_push_front(test, 487);
+    dll_insert(test,2,45);
+    if (45 == dll_pop_back(test))
+    {
+        passed = 1;
+    }
+    else
+    {
+        passed = 0;
+    }
+    free_dll(test);
+
+    return passed;
+}
+
+//Test insert more nodes.
+int unitTest9 (int status)
+{
+    int passed = 0;
+    dll_t *test = create_dll();
+    dll_push_front(test, 456);
+    dll_push_front(test, 487);
+    dll_insert(test,1,45);
+    dll_insert(test,2,345);
+    if (4 == dll_size(test))
+    {
+        passed = 1;
+    }
+    else
+    {
+        passed = 0;
+    }
+    free_dll(test);
+
+    return passed;
+}
+
+// Test get node method.
+int unitTest10 (int status)
+{
+    int passed = 0;
+    dll_t *test = create_dll();
+    dll_push_front(test, 456);
+    dll_push_front(test, 487);
+    dll_push_back(test,45);
+    dll_push_front(test,345);
+    if (345 == dll_get(test,0))
+    {
+        passed = 1;
+    }
+    else
+    {
+        passed = 0;
+    }
+    free_dll(test);
+
+    return passed;
+}
+
+
+
+
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 // UNCOMMENT Tests as you are ready to use them
@@ -121,6 +231,11 @@ int (*unitTests[])(int) = {
    unitTest3,
    unitTest4,
    unitTest5,
+   unitTest6,
+   unitTest7,
+   unitTest8,
+   unitTest9,
+   unitTest10,
     NULL};
 
 // ====================================================
