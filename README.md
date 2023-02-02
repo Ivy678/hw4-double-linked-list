@@ -40,7 +40,10 @@ O(n)
 
 
 
-3. Name an example where an array is better than a linked list, and an example where a linked list is better than an array. Make sure to reference the big O as part of your reasoning. 
+3. Name an example where an array is better than a linked list, and an example where a linked list is better than an array. Make sure to reference the big O as part of your reasoning.
+
+- When we trying to access a data, an array O(1) is better than a linked list O(n).
+- When we trying to insert a data, an linked list O(1) is better than an array O(n).
 
 
 
