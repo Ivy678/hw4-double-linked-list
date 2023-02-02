@@ -174,6 +174,13 @@ int dll_pop_front(dll_t *t)
         return 0;
     }
 
+    if(t->count == 1){
+        int pop = t->head->data;
+        free(t->head);
+        t->count--;
+        return pop;
+    }
+
     int pop = t->head->data; 
     node_t* p = t->head;
     t->head = t->head->next;
@@ -244,14 +251,14 @@ int dll_insert(dll_t *l, int pos, int item)
         return 0;
     }
 
-    if (pos == l->count+1)
+    if (pos == l->count)
     {
         dll_push_back(l,item);
     }
 
-    if (pos == 1)
+    if (pos == 0)
     {
-        dll_pop_front(l);
+        dll_push_front(l,item);
     }
     
     node_t* h = l->head->next;
