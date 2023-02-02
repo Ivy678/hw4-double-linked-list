@@ -69,7 +69,7 @@ int unitTest3(int status)
     return passed;
 }
 
-// Tests push_front and dll_pop_back functions
+// Tests push_back and dll_pop_back functions
 int unitTest4(int status)
 {
     int passed = 0;
