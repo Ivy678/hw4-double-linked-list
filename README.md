@@ -30,8 +30,8 @@ Did you use any external resources (you do not have to cite in class material)? 
 |-------------|-------------------|-------------------------|----------------------|
 | Access      | O(1)              | O(n)                    | O(n)                 |
 | Search/Find | O(n)              | O(n)                    | O(n)                 |
-| Insertion   | O(n)              | O(1)                    | O(1)                 |
-| Deletion    | O(n)              | O(1)                    | O(1)                 |
+| Insertion   | O(n)              | O(n)                    | O(n)                 |
+| Deletion    | O(n)              | O(n)                    | O(n)                 |
 
 
 2. Usually for singly and doubly linked lists, we reference both the head and tail for speed considerations. What would be the cost if you only had your head referenced, and you wanted to push to the tail of either?  $O(?)$
