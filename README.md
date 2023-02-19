@@ -36,10 +36,7 @@ Did you use any external resources (you do not have to cite in class material)? 
 
 2. Usually for singly and doubly linked lists, we reference both the head and tail for speed considerations. What would be the cost if you only had your head referenced, and you wanted to push to the tail of either?  $O(?)$
 
-If we only have a reference to the head of a singly linked list, to add an element to the tail, we would need to traverse the list from the head until the last node is reached, which takes O(n) time in the worst case where n is the number of elements in the list.
-
-For a doubly linked list, if you only have a reference to the head, adding an element to the tail can be done in constant time O(1) by simply accessing the tail node through the head node's next pointers.
-
+If I only have a reference to the head of a singly or doubly linked list, and I want to push a new node to the tail of the list, I would need to traverse the entire list to reach the end before adding the new node. This would have a time complexity of O(n), where n is the length of the list.
 
 
 3. Name an example where an array is better than a linked list, and an example where a linked list is better than an array. Make sure to reference the big O as part of your reasoning.
