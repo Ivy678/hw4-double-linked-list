@@ -50,7 +50,7 @@ When random access to elements is frequently needed, arrays are better than link
 
 - Example where a linked list is better than an array:
 
-When frequent insertion and deletion operations are performed, linked lists are better than arrays as in linked list, inserting or deleting an element can be done in O(1) time complexity by updating the pointers, while in arrays, this operation requires O(n) time complexity as elements need to be shifted to change the size of an array.
+When frequent insertion and deletion operations are performed, linked lists are better than arrays as in linked list, inserting or deleting the FIRST element(or say push/pop front) can be done in O(1) time, which is much faster than inserting/deleting the first element in an array. while in arrays, this operation requires O(n) time complexity as elements need to be shifted to change the size of an array.
 
 
 
