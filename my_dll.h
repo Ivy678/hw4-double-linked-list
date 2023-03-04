@@ -215,8 +215,9 @@ int dll_pop_back(dll_t *t)
         return pop;
     }
 
-    int pop = t->tail->data;
+    
     node_t* p = t->tail;
+    int pop = p->data;
     t->tail = t->tail->previous;
     t->tail->next = NULL;
     t->count --;
