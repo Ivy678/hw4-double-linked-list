@@ -181,8 +181,9 @@ int dll_pop_front(dll_t *t)
         return pop;
     }
 
-    int pop = t->head->data; 
+    
     node_t* p = t->head;
+    int pop = p->data; 
     t->head = t->head->next;
     t->head->previous = NULL;
     t->count--;
