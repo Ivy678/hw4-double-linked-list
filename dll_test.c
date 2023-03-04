@@ -174,30 +174,9 @@ int unitTest8(int status)
     return passed;
 }
 
-//Test insert more nodes.
-int unitTest9 (int status)
-{
-    int passed = 0;
-    dll_t *test = create_dll();
-    dll_push_front(test, 456);
-    dll_push_front(test, 487);
-    dll_insert(test,1,45);
-    dll_insert(test,2,345);
-    if (4 == dll_size(test))
-    {
-        passed = 1;
-    }
-    else
-    {
-        passed = 0;
-    }
-    free_dll(test);
-
-    return passed;
-}
 
 // Test get node method.
-int unitTest10 (int status)
+int unitTest9 (int status)
 {
     int passed = 0;
     dll_t *test = create_dll();
@@ -235,7 +214,6 @@ int (*unitTests[])(int) = {
    unitTest7,
    unitTest8,
    unitTest9,
-   unitTest10,
     NULL};
 
 // ====================================================

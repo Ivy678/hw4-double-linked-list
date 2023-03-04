@@ -122,6 +122,7 @@ int dll_push_front(dll_t *l, int item)
     newNode->previous= NULL;
     l->head->previous = newNode;
     l->head = newNode; 
+    l->head->next->previous = newNode;
     l->count++;
     return 1;
 }
