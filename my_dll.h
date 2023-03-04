@@ -52,7 +52,7 @@ dll_t *create_dll()
     
     myDLL->count = 0;
     myDLL->head = NULL;
-    myDLL->tail= myDLL->head;
+    myDLL->tail= NULL;
 
     return myDLL;
 }
@@ -69,6 +69,8 @@ node_t* make_node(int data){
         return NULL;
     }
     newNode->data = data;
+    newNode->next = NULL;
+    newNode->previous = NULL;
     return newNode;
 }
 
@@ -122,8 +124,6 @@ int dll_push_front(dll_t *l, int item)
     l->head = newNode; 
     l->count++;
     return 1;
-    
-    
 }
 
 // push a new item to the end of the DLL (after the last node in the list).
