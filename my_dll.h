@@ -239,8 +239,6 @@ int dll_insert(dll_t *l, int pos, int item)
 {
     // TODO: Implement me!!
 
-    node_t* newNode = make_node(item);
-
     if (l == NULL)
     {
         return -1;
@@ -249,33 +247,29 @@ int dll_insert(dll_t *l, int pos, int item)
     {
         return 0;
     }
-    
-    if (newNode == NULL)
-    {
-        return 0;
-    }
 
     if (pos == l->count)
     {
-        dll_push_back(l,item);
+        return dll_push_back(l,item);
     }
 
     if (pos == 0)
     {
-        dll_push_front(l,item);
+        return dll_push_front(l,item);
     }
     
-    node_t* h = l->head->next;
+    node_t* current = l->head;
     
     for(int i =0;i< pos-1 ;i++)
     {
-        h = h->next;
+        current = current->next;
     }
     
-    newNode->previous = h->previous;
-    newNode->next = h;
-    h->previous->next = newNode;
-    h->previous= newNode;
+    node_t* newNode = make_node(item);
+    newNode->next = current;
+    newNode->previous = current->previous;
+    current->previous->next = newNode;
+    current->previous= newNode;
     l->count ++;
     
     return 1; // Note: This line is a 'filler' so the code compiles.
