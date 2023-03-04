@@ -109,6 +109,10 @@ int dll_push_front(dll_t *l, int item)
     
     node_t* newNode = make_node(item);
 
+    if(newNode == NULL){
+        return 0;
+    }
+
     if(dll_empty(l)== 1){
         l->head = newNode;
         l->tail = newNode;
@@ -117,9 +121,9 @@ int dll_push_front(dll_t *l, int item)
         l->count++;
         return 1;
     }
-    
-    newNode->next = l->head;
+
     newNode->previous= NULL;
+    newNode->next = l->head;
     l->head->previous = newNode;
     l->head = newNode; 
     l->count++;
@@ -258,18 +262,24 @@ int dll_insert(dll_t *l, int pos, int item)
         return dll_push_front(l,item);
     }
     
-    node_t* current = l->head;
+    node_t* newNode = make_node(item);
+
+    if (newNode == NULL)
+    {
+        return 0;
+    }
+
+    node_t* h = l->head->next;
     
     for(int i =0;i< pos-1 ;i++)
     {
-        current = current->next;
+        h = h->next;
     }
     
-    node_t* newNode = make_node(item);
-    newNode->next = current;
-    newNode->previous = current->previous;
-    current->previous->next = newNode;
-    current->previous= newNode;
+    newNode->previous = h->previous;
+    newNode->next = h;
+    h->previous->next = newNode;
+    h->previous= newNode;
     l->count ++;
     
     return 1; // Note: This line is a 'filler' so the code compiles.
