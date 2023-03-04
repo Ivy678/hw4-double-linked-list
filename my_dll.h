@@ -174,17 +174,18 @@ int dll_pop_front(dll_t *t)
         return 0;
     }
 
-    if(t->count == 1){
-        int pop = t->head->data;
-        free(t->head);
-        t->count--;
-        return pop;
-    }
-
-    
     node_t* p = t->head;
     int pop = p->data; 
-    t->head = t->head->next;
+
+    if(t->count == 1){
+        t->head = NULL;
+        t->tail = NULL;
+        t->count--;
+        free(p);
+        return pop;
+    }
+    
+    t->head = p->next;
     t->head->previous = NULL;
     t->count--;
     free(p);
@@ -208,17 +209,18 @@ int dll_pop_back(dll_t *t)
         return 0;
     }
 
+    node_t* p = t->tail;
+    int pop = p->data;
+
     if(t->count == 1){
-        int pop = t->tail->data;
-        free(t->tail);
+        t->head = NULL;
+        t->tail = NULL;
         t->count--;
+        free(p);
         return pop;
     }
 
-    
-    node_t* p = t->tail;
-    int pop = p->data;
-    t->tail = t->tail->previous;
+    t->tail = p->previous;
     t->tail->next = NULL;
     t->count --;
     free(p);
@@ -380,11 +382,11 @@ void free_dll(dll_t *t)
         return;
     }
 
-    if (t->count == 0)
-    {
-        free(t);
-        return;
-    }
+    // if (t->count == 0)
+    // {
+    //     free(t);
+    //     return;
+    // }
     
     
     node_t* p = t->head;
